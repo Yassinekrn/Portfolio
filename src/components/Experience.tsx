@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { BriefcaseBusiness } from "lucide-react";
 
 interface Experience {
@@ -39,6 +39,34 @@ const experiences: Experience[] = [
 ];
 
 const Experience = () => {
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('opacity-100', 'translate-y-0', 'blur-none');
+            entry.target.classList.remove('opacity-0', 'translate-y-20', 'blur-sm');
+          } else {
+            entry.target.classList.add('opacity-0', 'translate-y-20', 'blur-sm');
+            entry.target.classList.remove('opacity-100', 'translate-y-0', 'blur-none');
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+        rootMargin: '-10% 0px -10% 0px'
+      }
+    );
+
+    cardRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="experience" className="py-20 md:py-32 bg-gradient-to-b from-background to-gray-50 dark:to-gray-900/50">
       <div className="container mx-auto px-4">
@@ -47,50 +75,32 @@ const Experience = () => {
             <div className="h-px bg-black flex-grow max-w-[100px]"></div>
             <span className="text-sm font-mono uppercase tracking-wider">Career Journey</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold animate-blur-in opacity-0">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold">
             Professional Experience
           </h2>
         </div>
 
-        <div className="space-y-12">
+        <div className="space-y-4 max-w-3xl mx-auto">
           {experiences.map((exp, index) => (
             <div
               key={exp.id}
-              className="group relative"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
+              ref={(el) => (cardRefs.current[index] = el)}
+              className="relative bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-6 shadow-lg 
+                       transition-all duration-700 transform opacity-0 translate-y-20 blur-sm
+                       hover:shadow-xl hover:scale-[1.02]"
+              style={{
+                zIndex: experiences.length - index,
+                marginTop: index === 0 ? '0' : '-4rem'
+              }}
             >
-              <div className="relative p-6 md:p-10 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="absolute -top-6 left-6 bg-highlight text-white p-3 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="flex items-center gap-4">
+                <div className="bg-highlight text-white p-3 rounded-xl shadow-lg">
                   <BriefcaseBusiness className="w-6 h-6" />
                 </div>
-
-                <div className="ml-4">
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                      <h3 className="text-2xl font-display font-bold mb-2">{exp.role}</h3>
-                      <p className="text-gray-600 mb-1">{exp.company}</p>
-                      <p className="text-sm text-gray-500 mb-4">{exp.duration}</p>
-                    </div>
-                  </div>
-
-                  <p className="text-gray-600 mb-6 animate-blur-in opacity-0 [animation-delay:0.3s]">
-                    {exp.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {exp.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="text-sm bg-gray-100 text-gray-800 py-1 px-3 rounded-full animate-blur-in opacity-0 [animation-delay:0.5s]"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                <div>
+                  <h3 className="text-2xl font-display font-bold">{exp.role}</h3>
+                  <p className="text-gray-600">{exp.company}</p>
                 </div>
-
-                <div className="absolute -z-10 inset-0 bg-gradient-to-r from-highlight/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
               </div>
             </div>
           ))}

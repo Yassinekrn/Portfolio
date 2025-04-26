@@ -2,6 +2,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
+import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 
 const WorkPage = () => {
@@ -10,6 +11,7 @@ const WorkPage = () => {
       <Navbar />
       <div className="pt-24">
         <Projects />
+        <Experience />
       </div>
       <Footer />
     </div>
