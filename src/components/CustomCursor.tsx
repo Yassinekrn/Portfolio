@@ -10,7 +10,7 @@ const CustomCursor = () => {
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
   const [hidden, setHidden] = useState(true);
   const [clicked, setClicked] = useState(false);
-  const [linkHovered, setLinkHovered] = useState(false);
+  const [hoveredTitle, setHoveredTitle] = useState(false);
 
   useEffect(() => {
     const updatePosition = (e: MouseEvent) => {
@@ -21,17 +21,25 @@ const CustomCursor = () => {
     const handleMouseDown = () => setClicked(true);
     const handleMouseUp = () => setClicked(false);
 
-    const handleLinkHoverIn = (e: MouseEvent) => {
-      if ((e.target as HTMLElement).tagName === 'A' || 
-          (e.target as HTMLElement).tagName === 'BUTTON' ||
-          (e.target as HTMLElement).closest('a') ||
-          (e.target as HTMLElement).closest('button')) {
-        setLinkHovered(true);
+    const handleTitleHoverIn = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const isTitleElement = 
+        target.textContent?.includes("Featured Projects") ||
+        target.textContent?.includes("Professional Experience") ||
+        target.textContent?.includes("Hello! I'm Alex Cooper") ||
+        target.textContent?.includes("Let's Work Together") ||
+        target.closest('h2')?.textContent?.includes("Featured Projects") ||
+        target.closest('h2')?.textContent?.includes("Professional Experience") ||
+        target.closest('h2')?.textContent?.includes("Hello! I'm Alex Cooper") ||
+        target.closest('h2')?.textContent?.includes("Let's Work Together");
+
+      if (isTitleElement) {
+        setHoveredTitle(true);
       }
     };
 
-    const handleLinkHoverOut = () => {
-      setLinkHovered(false);
+    const handleTitleHoverOut = () => {
+      setHoveredTitle(false);
     };
 
     const handleMouseLeave = () => setHidden(true);
@@ -40,8 +48,8 @@ const CustomCursor = () => {
     document.addEventListener("mousemove", updatePosition);
     document.addEventListener("mousedown", handleMouseDown);
     document.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("mouseover", handleLinkHoverIn);
-    document.addEventListener("mouseout", handleLinkHoverOut);
+    document.addEventListener("mouseover", handleTitleHoverIn);
+    document.addEventListener("mouseout", handleTitleHoverOut);
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mouseenter", handleMouseEnter);
 
@@ -49,8 +57,8 @@ const CustomCursor = () => {
       document.removeEventListener("mousemove", updatePosition);
       document.removeEventListener("mousedown", handleMouseDown);
       document.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("mouseover", handleLinkHoverIn);
-      document.removeEventListener("mouseout", handleLinkHoverOut);
+      document.removeEventListener("mouseover", handleTitleHoverIn);
+      document.removeEventListener("mouseout", handleTitleHoverOut);
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
@@ -58,10 +66,10 @@ const CustomCursor = () => {
 
   const cursorClasses = `
     fixed pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2
-    mix-blend-difference transition-transform duration-150 ease-out
+    mix-blend-difference transition-all duration-300 ease-out
     ${hidden ? 'opacity-0' : 'opacity-100'}
     ${clicked ? 'scale-75' : ''}
-    ${linkHovered ? 'scale-150' : ''}
+    ${hoveredTitle ? 'scale-[2.5]' : ''}
   `;
 
   return (

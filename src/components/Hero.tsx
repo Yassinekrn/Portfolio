@@ -1,11 +1,16 @@
-
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [titlePosition, setTitlePosition] = useState({ x: 0, y: 0 });
+  const followSpeed = useRef(0.05); // Initial slow speed
+  const isInView = useRef(true);
   
   useEffect(() => {
+    let animationFrameId: number;
+    
     const handleMouseMove = (e: MouseEvent) => {
       if (!heroRef.current) return;
       
@@ -15,38 +20,53 @@ const Hero = () => {
       const x = (clientX - left) / width - 0.5;
       const y = (clientY - top) / height - 0.5;
       
-      const titleElements = heroRef.current.querySelectorAll('.parallax-title');
-      const decorElements = heroRef.current.querySelectorAll('.parallax-decor');
-      const glowElements = heroRef.current.querySelectorAll('.glow-effect');
+      setMousePosition({ x, y });
       
-      titleElements.forEach((element) => {
-        const speed = 20;
-        const xMovement = x * speed;
-        const yMovement = y * speed;
-        (element as HTMLElement).style.transform = `translate(${xMovement}px, ${yMovement}px)`;
-      });
-      
-      decorElements.forEach((element, index) => {
-        const speed = 40 + (index * 15);
-        const xMovement = x * speed;
-        const yMovement = y * speed;
-        const rotation = (x + y) * 15;
-        (element as HTMLElement).style.transform = `translate(${xMovement}px, ${yMovement}px) rotate(${rotation}deg)`;
-      });
-
-      glowElements.forEach((element) => {
-        const rect = (element as HTMLElement).getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const angleRad = Math.atan2(clientY - centerY, clientX - centerX);
-        const angleDeg = (angleRad * 180) / Math.PI;
-        (element as HTMLElement).style.background = `linear-gradient(${angleDeg}deg, ${getComputedStyle(document.documentElement).getPropertyValue('--highlight')} 0%, transparent 75%)`;
-      });
+      // Gradually increase follow speed
+      followSpeed.current = Math.min(followSpeed.current + 0.01, 0.2);
     };
     
+    const updateTitlePosition = () => {
+      if (!isInView.current) {
+        // Reset position when out of view
+        setTitlePosition({ x: 0, y: 0 });
+        followSpeed.current = 0.05; // Reset speed
+        return;
+      }
+
+      setTitlePosition(prev => ({
+        x: prev.x + (mousePosition.x * 20 - prev.x) * followSpeed.current,
+        y: prev.y + (mousePosition.y * 20 - prev.y) * followSpeed.current
+      }));
+
+      animationFrameId = requestAnimationFrame(updateTitlePosition);
+    };
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      isInView.current = entries[0].isIntersecting;
+      if (!isInView.current) {
+        setTitlePosition({ x: 0, y: 0 });
+        followSpeed.current = 0.05;
+      }
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.2
+    });
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+    
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    animationFrameId = requestAnimationFrame(updateTitlePosition);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
+    };
+  }, [mousePosition]);
 
   return (
     <section 
@@ -72,10 +92,22 @@ const Hero = () => {
           </p>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight">
-            <span className="block parallax-title animate-blur-in opacity-0 [animation-delay:0.5s]">
+            <span 
+              className="block parallax-title animate-blur-in opacity-0 [animation-delay:0.5s]"
+              style={{
+                transform: `translate(${titlePosition.x}px, ${titlePosition.y}px)`,
+                transition: 'transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               Crafting Digital Experiences
             </span>
-            <span className="block parallax-title animate-blur-in opacity-0 [animation-delay:0.7s]">
+            <span 
+              className="block parallax-title animate-blur-in opacity-0 [animation-delay:0.7s]"
+              style={{
+                transform: `translate(${titlePosition.x}px, ${titlePosition.y}px)`,
+                transition: 'transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               That <span className="text-highlight relative glow-effect">
                 Inspire
                 <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 100 20" preserveAspectRatio="none">
