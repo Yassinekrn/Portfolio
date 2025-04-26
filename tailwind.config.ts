@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -68,7 +67,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				highlight: "#FFE234",
+				highlight: "#6366f1",
 				darkblue: "#1A1F2C",
 			},
 			borderRadius: {
@@ -116,6 +115,22 @@ export default {
 				'marquee': {
 					'0%': { transform: 'translateX(0)' },
 					'100%': { transform: 'translateX(-100%)' }
+				},
+				'blur-in': {
+					'0%': { 
+						filter: 'blur(10px)',
+						opacity: '0'
+					},
+					'100%': { 
+						filter: 'blur(0)',
+						opacity: '1'
+					}
+				},
+				'float-advanced': {
+					'0%': { transform: 'translateY(0px) rotate(0deg)' },
+					'25%': { transform: 'translateY(-5px) rotate(2deg)' },
+					'75%': { transform: 'translateY(5px) rotate(-2deg)' },
+					'100%': { transform: 'translateY(0px) rotate(0deg)' }
 				}
 			},
 			animation: {
@@ -129,6 +144,8 @@ export default {
 				'fade-in': 'fade-in 0.5s ease-out',
 				'fade-out': 'fade-out 0.5s ease-out',
 				'marquee': 'marquee 25s linear infinite',
+				'blur-in': 'blur-in 0.6s ease-out forwards',
+				'float-advanced': 'float-advanced 6s ease-in-out infinite',
 			}
 		}
 	},
