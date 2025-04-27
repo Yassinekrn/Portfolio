@@ -2,6 +2,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { fadeInWithDelayVariants, staggerContainerVariants, scrollAnimationSettings } from "@/lib/animation";
 
 interface Skill {
   category: string;
@@ -23,19 +24,6 @@ const skills: Skill[] = [
   }
 ];
 
-const fadeInVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: delay * 0.1,
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1.0]
-    }
-  })
-};
-
 const About = () => {
   return (
     <section id="about" className="py-20 md:py-32 bg-gray-50 relative">
@@ -44,26 +32,29 @@ const About = () => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.1 } }
-            }}
+            viewport={scrollAnimationSettings}
+            variants={staggerContainerVariants}
           >
-            <motion.div variants={fadeInVariants} className="flex items-center gap-4 mb-4">
+            <motion.div 
+              variants={fadeInWithDelayVariants(0)}
+              className="flex items-center gap-4 mb-4"
+            >
               <div className="h-px bg-black flex-grow max-w-[100px]"></div>
               <span className="text-sm font-mono uppercase tracking-wider">About Me</span>
             </motion.div>
             
             <motion.h2 
-              variants={fadeInVariants}
+              variants={fadeInWithDelayVariants(1)}
               className="text-4xl md:text-5xl font-display font-bold mb-8"
               data-cursor-highlight="true"
             >
               Hello! I'm Alex Cooper
             </motion.h2>
             
-            <motion.div variants={fadeInVariants} className="space-y-6 text-gray-600">
+            <motion.div 
+              variants={fadeInWithDelayVariants(2)} 
+              className="space-y-6 text-gray-600"
+            >
               <p>
                 I partner up with dynamic founders reinventing tomorrow, from YC startups to enterprises and bootstrapped companies. My goal is to craft unique, consistent, and mature identities for SaaS and Web3 products.
               </p>
@@ -76,7 +67,7 @@ const About = () => {
             </motion.div>
             
             <motion.div 
-              variants={fadeInVariants}
+              variants={fadeInWithDelayVariants(3)}
               className="mt-10 grid grid-cols-3 gap-4"
             >
               <motion.div 
@@ -106,14 +97,11 @@ const About = () => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
-            }}
+            viewport={scrollAnimationSettings}
+            variants={staggerContainerVariants}
           >
             <motion.div 
-              variants={fadeInVariants}
+              variants={fadeInWithDelayVariants(0)}
               className="relative"
             >
               <motion.div
@@ -154,7 +142,7 @@ const About = () => {
             </motion.div>
             
             <motion.div 
-              variants={fadeInVariants}
+              variants={fadeInWithDelayVariants(4)}
               className="mt-16"
             >
               <h3 className="text-xl font-display font-bold mb-6" data-cursor-highlight="true">Skills & Expertise</h3>
@@ -163,7 +151,7 @@ const About = () => {
                 {skills.map((skillGroup, idx) => (
                   <motion.div 
                     key={idx}
-                    variants={fadeInVariants}
+                    variants={fadeInWithDelayVariants(idx + 5)}
                   >
                     <h4 className="text-sm font-medium text-gray-900 mb-3">{skillGroup.category}</h4>
                     <div className="flex flex-wrap gap-2">

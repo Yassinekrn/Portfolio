@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Position {
   x: number;
@@ -11,7 +11,7 @@ const CustomCursor = () => {
   const [hoveredTitle, setHoveredTitle] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   
-  // Object to track current and previous positions
+  // Objects to track mouse positions
   const mousePosition = useRef<Position>({ x: 0, y: 0 });
   const previousMousePosition = useRef<Position>({ x: 0, y: 0 });
   const cursorPosition = useRef<Position>({ x: 0, y: 0 });

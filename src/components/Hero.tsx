@@ -138,11 +138,11 @@ const Hero = () => {
           
           <motion.div
             style={{ 
-              transform: `translate(${titlePosition.x}px, ${titlePosition.y}px) rotate(${titlePosition.x * 2}deg)`,
+              transform: `translate(${titlePosition.x}px, ${titlePosition.y}px)`,
               transition: 'transform 0.05s linear'
             }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight tracking-normal">
               <AnimatedText
                 text="Crafting Digital Experiences"
                 delay={1}
