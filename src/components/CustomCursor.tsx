@@ -19,8 +19,11 @@ const CustomCursor = () => {
     // Variables for animation and elasticity
     const currentScale = useRef({ x: 1, y: 1 });
     const currentAngle = useRef(0);
+    const targetAngle = useRef(0); // Added for smooth angle transitions
+    const hoverScale = useRef(1); // Add this for smooth hover transitions
     const animationFrame = useRef(0);
-    const speed = useRef(0.1); // Reduced for smoother movement (was 0.17)
+    const speed = useRef(0.1);
+    const angleSmoothing = useRef(0.2); // For smoother angle transitions
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -80,41 +83,69 @@ const CustomCursor = () => {
             const deltaMouseY =
                 mousePosition.current.y - previousMousePosition.current.y;
 
-            // Calculate mouse velocity using Pythagorean theorem and adjust speed
-            // Lower threshold (100 instead of 150) and higher multiplier (6 instead of 4)
-            const mouseVelocity = Math.min(
-                Math.sqrt(deltaMouseX ** 2 + deltaMouseY ** 2) * 6,
-                100
-            );
+            // Only apply elastic effects if there's significant movement
+            if (Math.abs(deltaMouseX) > 0.5 || Math.abs(deltaMouseY) > 0.5) {
+                // Calculate mouse velocity using Pythagorean theorem
+                const mouseVelocity = Math.min(
+                    Math.sqrt(deltaMouseX ** 2 + deltaMouseY ** 2) * 6,
+                    100
+                );
 
-            // Convert mouse velocity to scale values for the elastic effect
-            // Increased from 0.5 to 0.8 for more noticeable effect
-            const scaleValue = (mouseVelocity / 100) * 0.8;
+                // Direction-aware elastic effect
+                const directionFactor =
+                    Math.abs(deltaMouseX) > Math.abs(deltaMouseY)
+                        ? Math.sign(deltaMouseX)
+                        : 1;
 
-            // Smoothly update the current scale
-            currentScale.current.x = 1 + scaleValue;
-            currentScale.current.y = 1 - scaleValue * 0.5;
+                // Convert mouse velocity to scale values for the elastic effect
+                const scaleValue = (mouseVelocity / 100) * 0.8;
 
-            // ROTATE - Calculate angle for rotation based on movement direction
-            if (mouseVelocity > 15) {
-                // Lower threshold to make rotation more sensitive
-                currentAngle.current =
-                    (Math.atan2(deltaMouseY, deltaMouseX) * 180) / Math.PI;
+                // Apply elastic deformation based on direction
+                currentScale.current.x =
+                    1 + scaleValue * Math.abs(directionFactor);
+                currentScale.current.y = 1 - scaleValue * 0.5;
+
+                // ROTATE - Calculate angle based on movement direction
+                if (mouseVelocity > 12) {
+                    // Calculate raw angle
+                    const newAngle =
+                        (Math.atan2(deltaMouseY, deltaMouseX) * 180) / Math.PI;
+
+                    // Update target angle with special handling for left movement
+                    targetAngle.current = newAngle;
+                }
+            } else {
+                // Gradually return to neutral when not moving
+                currentScale.current.x += (1 - currentScale.current.x) * 0.2;
+                currentScale.current.y += (1 - currentScale.current.y) * 0.2;
             }
+
+            // Smoothly interpolate the current angle toward the target angle
+            const angleDiff = targetAngle.current - currentAngle.current;
+
+            // Normalize angle difference to avoid flipping
+            let normalizedDiff = angleDiff;
+            if (angleDiff > 180) normalizedDiff -= 360;
+            if (angleDiff < -180) normalizedDiff += 360;
+
+            // Apply smoothing to angle changes
+            currentAngle.current += normalizedDiff * angleSmoothing.current;
+
+            // Smooth transition for hover scale
+            const targetHoverScale = hoveredTitle ? 3.5 : 1;
+            hoverScale.current += (targetHoverScale - hoverScale.current) * 0.1;
 
             // Apply transformations if cursor element exists
             if (cursorRef.current) {
-                const baseScale = hoveredTitle ? 3.5 : 1; // Increased from 2.5 to 3.5
-
                 // Apply all transformations with the centering offset
                 cursorRef.current.style.transform = `
                     translate(${cursorPosition.current.x}px, ${
                     cursorPosition.current.y
-                }px) 
+                }px)
                     translate(-50%, -50%)
-                    rotate(${currentAngle.current}deg) 
-                    scale(${baseScale * currentScale.current.x}, ${
-                    baseScale * currentScale.current.y
+                    rotate(${currentAngle.current}deg)
+                    scale(${hoverScale.current * currentScale.current.x}, ${
+                    hoverScale.current * currentScale.current.y
                 })
                 `;
             }
@@ -126,13 +157,23 @@ const CustomCursor = () => {
         // Start animation
         updateCursorPosition();
 
-        // Add event listeners
-        document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mousedown", handleMouseDown);
-        document.addEventListener("mouseup", handleMouseUp);
-        document.addEventListener("mouseover", handleTitleHover);
-        document.addEventListener("mouseleave", handleMouseLeave);
-        document.addEventListener("mouseenter", handleMouseEnter);
+        // Add event listeners with passive option for better performance
+        document.addEventListener("mousemove", handleMouseMove, {
+            passive: true,
+        });
+        document.addEventListener("mousedown", handleMouseDown, {
+            passive: true,
+        });
+        document.addEventListener("mouseup", handleMouseUp, { passive: true });
+        document.addEventListener("mouseover", handleTitleHover, {
+            passive: true,
+        });
+        document.addEventListener("mouseleave", handleMouseLeave, {
+            passive: true,
+        });
+        document.addEventListener("mouseenter", handleMouseEnter, {
+            passive: true,
+        });
 
         return () => {
             // Clean up event listeners and animation frame on component unmount
@@ -161,6 +202,7 @@ const CustomCursor = () => {
                     left: 0,
                     top: 0,
                     transform: `translate(${cursorPosition.current.x}px, ${cursorPosition.current.y}px) translate(-50%, -50%)`,
+                    willChange: "transform, opacity",
                 }}
             >
                 <div className="w-2 h-2 bg-black dark:bg-white rounded-full" />
@@ -171,18 +213,17 @@ const CustomCursor = () => {
                 ref={cursorRef}
                 className={`
                     fixed pointer-events-none z-[9999]
-                    mix-blend-difference transition-all duration-300 ease-out
+                    mix-blend-difference transition-opacity duration-300
                     ${hidden ? "opacity-0" : "opacity-100"}
                 `}
                 style={{
                     left: 0,
                     top: 0,
                     transform: `translate(${cursorPosition.current.x}px, ${cursorPosition.current.y}px) translate(-50%, -50%)`,
-                    transition: "opacity 300ms ease-out, transform 50ms linear",
+                    willChange: "transform",
                 }}
             >
-                <div className="w-7 h-7 bg-white dark:bg-white rounded-full" />{" "}
-                {/* Increased from w-6 h-6 to w-7 h-7 */}
+                <div className="w-7 h-7 bg-white dark:bg-white rounded-full" />
             </div>
         </>
     );
