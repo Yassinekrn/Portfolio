@@ -10,27 +10,30 @@ import WorkPage from "./pages/WorkPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 import CustomCursor from "./components/CustomCursor";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const queryClient = new QueryClient();
 
 const App = () => {
     return (
-        <QueryClientProvider client={queryClient}>
-            <TooltipProvider>
-                <Toaster />
-                <Sonner position="bottom-right" />
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Index />} />
-                        <Route path="/about" element={<AboutPage />} />
-                        <Route path="/work" element={<WorkPage />} />
-                        <Route path="/contact" element={<ContactPage />} />
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </BrowserRouter>
-                <CustomCursor />
-            </TooltipProvider>
-        </QueryClientProvider>
+        <ThemeProvider>
+            <QueryClientProvider client={queryClient}>
+                <TooltipProvider>
+                    <Toaster />
+                    <Sonner position="bottom-right" />
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<Index />} />
+                            <Route path="/about" element={<AboutPage />} />
+                            <Route path="/work" element={<WorkPage />} />
+                            <Route path="/contact" element={<ContactPage />} />
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </BrowserRouter>
+                    <CustomCursor />
+                </TooltipProvider>
+            </QueryClientProvider>
+        </ThemeProvider>
     );
 };
 
