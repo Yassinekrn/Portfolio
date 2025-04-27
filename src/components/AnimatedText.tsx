@@ -56,7 +56,7 @@ const AnimatedText = ({ text, className = "", delay = 0 }: AnimatedTextProps) =>
         <motion.span
           variants={child}
           key={index}
-          className="inline-block mr-1"
+          className="inline-block mr-2"
         >
           {word}
         </motion.span>

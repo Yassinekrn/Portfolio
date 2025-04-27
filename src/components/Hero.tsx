@@ -131,23 +131,30 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-block mb-4 py-1 px-3 bg-highlight/10 text-highlight text-sm font-medium rounded-full"
+            className="inline-block mb-4 py-1 px-3 bg-highlight/10 text-black text-sm font-medium rounded-full"
           >
             Designer & Developer
           </motion.p>
           
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight">
-            <AnimatedText
-              text="Crafting Digital Experiences"
-              delay={1}
-              className="block"
-            />
-            <AnimatedText
-              text="That Inspire & Engage"
-              delay={2}
-              className="block"
-            />
-          </h1>
+          <motion.div
+            style={{ 
+              transform: `translate(${titlePosition.x}px, ${titlePosition.y}px) rotate(${titlePosition.x * 2}deg)`,
+              transition: 'transform 0.05s linear'
+            }}
+          >
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight">
+              <AnimatedText
+                text="Crafting Digital Experiences"
+                delay={1}
+                className="block"
+              />
+              <AnimatedText
+                text="That Inspire & Engage"
+                delay={2}
+                className="block"
+              />
+            </h1>
+          </motion.div>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -166,12 +173,12 @@ const Hero = () => {
           >
             <motion.a 
               href="#work" 
-              className="group bg-highlight text-white px-6 py-3 rounded-full text-lg font-medium hover:bg-highlight/90 transition-all duration-300 flex items-center gap-2"
+              className="group bg-highlight text-black px-6 py-3 rounded-full text-lg font-medium hover:bg-highlight/90 transition-all duration-300 flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               View My Work
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 text-black" />
             </motion.a>
             <motion.a 
               href="#contact" 
