@@ -89,6 +89,45 @@
     [data-cursor-highlight="true"] {
         cursor: none !important;
     }
+
+    /* Custom Scrollbar Styling */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: hsl(var(--background));
+        border-radius: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: hsl(var(--highlight) / 0.6);
+        border-radius: 8px;
+        border: 2px solid hsl(var(--background));
+        transition: background 0.2s ease;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: hsl(var(--highlight) / 0.8);
+    }
+
+    ::-webkit-scrollbar-corner {
+        background: hsl(var(--background));
+    }
+
+    /* Firefox scrollbar styling */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: hsl(var(--highlight) / 0.6) hsl(var(--background));
+    }
+
+    /* Keep the cursor hidden on scrollbars */
+    ::-webkit-scrollbar,
+    ::-webkit-scrollbar-track,
+    ::-webkit-scrollbar-thumb {
+        cursor: none !important;
+    }
 }
 
 @layer utilities {
