@@ -1,7 +1,7 @@
-
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface Project {
   id: string;
@@ -43,7 +43,13 @@ const Projects = () => {
   return (
     <section id="work" className="py-20 md:py-32">
       <div className="container mx-auto px-4">
-        <div className="mb-12 md:mb-20">
+        <motion.div 
+          className="mb-12 md:mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <div className="flex items-center gap-4 mb-4">
             <div className="h-px bg-black flex-grow max-w-[100px]"></div>
             <span className="text-sm font-mono uppercase tracking-wider">Latest Work</span>
@@ -51,24 +57,35 @@ const Projects = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold">
             Featured Projects
           </h2>
-        </div>
+        </motion.div>
 
         <div className="space-y-32">
           {projects.map((project, index) => (
-            <div 
+            <motion.div 
               key={project.id}
               className="group"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.8,
+                delay: index * 0.2,
+                type: "spring",
+                stiffness: 50
+              }}
+              viewport={{ once: true, margin: "-100px" }}
             >
               <div className={cn(
                 "grid grid-cols-1 lg:grid-cols-2 gap-8 items-center",
                 index % 2 === 1 && "lg:grid-flow-dense"
               )}>
-                <div className={cn(
-                  "relative overflow-hidden rounded-2xl",
-                  index % 2 === 1 && "lg:col-start-1"
-                )}>
+                <motion.div 
+                  className={cn(
+                    "relative overflow-hidden rounded-2xl",
+                    index % 2 === 1 && "lg:col-start-1"
+                  )}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <div 
                     className="absolute inset-0 opacity-20 transition-opacity duration-500 group-hover:opacity-40"
                     style={{ backgroundColor: project.color }}
@@ -81,12 +98,18 @@ const Projects = () => {
                   <div className="absolute bottom-4 left-4 bg-white/80 backdrop-blur-sm py-1 px-3 rounded-full text-xs font-medium">
                     {project.tags[0]}
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className={cn(
-                  "lg:px-8",
-                  index % 2 === 1 && "lg:col-start-2"
-                )}>
+                <motion.div 
+                  className={cn(
+                    "lg:px-8",
+                    index % 2 === 1 && "lg:col-start-2"
+                  )}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
                   <div className="mb-4">
                     <div className="inline-block bg-black text-white text-sm font-mono py-1 px-2 rounded mb-4">
                       {`0${index + 1}`}
@@ -112,9 +135,9 @@ const Projects = () => {
                       <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover/link:translate-x-1" />
                     </a>
                   </div>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -1,7 +1,7 @@
-
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface Experience {
   id: string;
@@ -51,7 +51,13 @@ const Experience = () => {
   return (
     <section id="experience" className="py-20 md:py-32">
       <div className="container mx-auto px-4">
-        <div className="mb-12 md:mb-20">
+        <motion.div 
+          className="mb-12 md:mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <div className="flex items-center gap-4 mb-4">
             <div className="h-px bg-black flex-grow max-w-[100px]"></div>
             <span className="text-sm font-mono uppercase tracking-wider">Career Journey</span>
@@ -59,18 +65,31 @@ const Experience = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold">
             Professional Experience
           </h2>
-        </div>
+        </motion.div>
 
         <div className="space-y-32">
           {experiences.map((exp, index) => (
-            <div 
+            <motion.div 
               key={exp.id}
               className="group"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.8,
+                delay: index * 0.2,
+                type: "spring",
+                stiffness: 50
+              }}
+              viewport={{ once: true, margin: "-100px" }}
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <div className="lg:px-8">
+                <motion.div 
+                  className="lg:px-8"
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
                   <div className="mb-4">
                     <div className="inline-block bg-black text-white text-sm font-mono py-1 px-2 rounded mb-4">
                       {`0${index + 1}`}
@@ -96,9 +115,13 @@ const Experience = () => {
                       <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover/link:translate-x-1" />
                     </a>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="relative overflow-hidden rounded-2xl">
+                <motion.div 
+                  className="relative overflow-hidden rounded-2xl"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <div 
                     className="absolute inset-0 opacity-20 transition-opacity duration-500 group-hover:opacity-40"
                     style={{ backgroundColor: exp.color }}
@@ -111,9 +134,9 @@ const Experience = () => {
                   <div className="absolute bottom-4 left-4 bg-white/80 backdrop-blur-sm py-1 px-3 rounded-full text-xs font-medium">
                     {exp.company}
                   </div>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

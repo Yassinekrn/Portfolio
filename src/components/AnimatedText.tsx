@@ -23,15 +23,18 @@ const AnimatedText = ({ text, className = "", delay = 0 }: AnimatedTextProps) =>
     visible: {
       opacity: 1,
       y: 0,
+      filter: "blur(0px)",
       transition: {
         type: "spring",
         damping: 12,
         stiffness: 100,
+        filter: { duration: 0.2, ease: "easeOut" }
       },
     },
     hidden: {
       opacity: 0,
       y: 20,
+      filter: "blur(10px)",
       transition: {
         type: "spring",
         damping: 12,
