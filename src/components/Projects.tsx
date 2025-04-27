@@ -1,3 +1,4 @@
+
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -19,7 +20,7 @@ const projects: Project[] = [
     description: "Reimagining website for B2B banking solution with a mature look and feel to meet modern e-commerce needs.",
     tags: ["UI/UX Design", "Web Development", "Branding"],
     image: "/lovable-uploads/492c5ac2-2cd4-48c8-b707-a77c89783608.png",
-    color: "#FFE234",
+    color: "hsl(var(--highlight))",
   },
   {
     id: "project-2",
@@ -27,7 +28,7 @@ const projects: Project[] = [
     description: "Creating a revolutionary AI-powered analytics dashboard with intuitive visualizations.",
     tags: ["Interface Design", "Product Strategy", "Frontend"],
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
-    color: "#A594F9",
+    color: "hsl(var(--highlight))",
   },
   {
     id: "project-3",
@@ -35,7 +36,7 @@ const projects: Project[] = [
     description: "Sustainable e-commerce platform showcasing eco-friendly products with a carbon-neutral approach.",
     tags: ["Branding", "Web Design", "UI/UX"],
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800",
-    color: "#4CAF50",
+    color: "hsl(var(--highlight))",
   },
 ];
 
@@ -54,7 +55,10 @@ const Projects = () => {
             <div className="h-px bg-black flex-grow max-w-[100px]"></div>
             <span className="text-sm font-mono uppercase tracking-wider">Latest Work</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold">
+          <h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold"
+            data-cursor-highlight="true"
+          >
             Featured Projects
           </h2>
         </motion.div>
@@ -114,26 +118,50 @@ const Projects = () => {
                     <div className="inline-block bg-black text-white text-sm font-mono py-1 px-2 rounded mb-4">
                       {`0${index + 1}`}
                     </div>
-                    <h3 className="text-3xl md:text-4xl font-display font-bold mb-4">{project.title}</h3>
-                    <p className="text-gray-600 mb-6">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-8">
+                    <motion.h3 
+                      className="text-3xl md:text-4xl font-display font-bold mb-4"
+                      data-cursor-highlight="true"
+                    >
+                      {project.title}
+                    </motion.h3>
+                    <motion.p 
+                      className="text-gray-600 mb-6"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      {project.description}
+                    </motion.p>
+                    <motion.div 
+                      className="flex flex-wrap gap-2 mb-8"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ staggerChildren: 0.1, delayChildren: 0.5 }}
+                      viewport={{ once: true }}
+                    >
                       {project.tags.map((tag) => (
-                        <span 
+                        <motion.span 
                           key={tag} 
                           className="text-xs bg-gray-100 py-1 px-3 rounded-full"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3 }}
                         >
                           {tag}
-                        </span>
+                        </motion.span>
                       ))}
-                    </div>
-                    <a 
+                    </motion.div>
+                    <motion.a 
                       href={`#${project.id}`}
                       className="inline-flex items-center group/link"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     >
                       <span className="text-sm font-medium mr-2">View Project</span>
                       <span className="h-[2px] w-6 bg-black transition-all group-hover/link:w-10"></span>
                       <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover/link:translate-x-1" />
-                    </a>
+                    </motion.a>
                   </div>
                 </motion.div>
               </div>

@@ -1,6 +1,6 @@
+
 import React from "react";
 import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 interface Experience {
@@ -23,7 +23,7 @@ const experiences: Experience[] = [
     description: "Led the development of enterprise-level web applications using React and TypeScript. Mentored junior developers and implemented best practices for scalable architectures.",
     skills: ["React", "TypeScript", "Team Leadership", "System Architecture"],
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=800",
-    color: "#8B0000"
+    color: "hsl(var(--highlight))"
   },
   {
     id: "exp-2",
@@ -33,7 +33,7 @@ const experiences: Experience[] = [
     description: "Collaborated with designers to create pixel-perfect interfaces. Improved user engagement by 40% through optimized UI implementations and modern design systems.",
     skills: ["UI/UX Design", "Frontend Development", "Design Systems"],
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=800",
-    color: "#A52A2A"
+    color: "hsl(var(--highlight))"
   },
   {
     id: "exp-3",
@@ -43,7 +43,7 @@ const experiences: Experience[] = [
     description: "Developed and maintained features for a SaaS platform. Reduced loading times by 60% through code optimization and modern web technologies.",
     skills: ["JavaScript", "React", "Performance Optimization"],
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
-    color: "#800000"
+    color: "hsl(var(--highlight))"
   }
 ];
 
@@ -62,7 +62,10 @@ const Experience = () => {
             <div className="h-px bg-black flex-grow max-w-[100px]"></div>
             <span className="text-sm font-mono uppercase tracking-wider">Career Journey</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold">
+          <h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold"
+            data-cursor-highlight="true"
+          >
             Professional Experience
           </h2>
         </motion.div>
@@ -94,26 +97,50 @@ const Experience = () => {
                     <div className="inline-block bg-black text-white text-sm font-mono py-1 px-2 rounded mb-4">
                       {`0${index + 1}`}
                     </div>
-                    <h3 className="text-3xl md:text-4xl font-display font-bold mb-4">{exp.role}</h3>
-                    <p className="text-gray-600 mb-6">{exp.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-8">
+                    <motion.h3 
+                      className="text-3xl md:text-4xl font-display font-bold mb-4"
+                      data-cursor-highlight="true"
+                    >
+                      {exp.role}
+                    </motion.h3>
+                    <motion.p 
+                      className="text-gray-600 mb-6"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      {exp.description}
+                    </motion.p>
+                    <motion.div 
+                      className="flex flex-wrap gap-2 mb-8"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ staggerChildren: 0.1, delayChildren: 0.5 }}
+                      viewport={{ once: true }}
+                    >
                       {exp.skills.map((skill) => (
-                        <span 
+                        <motion.span 
                           key={skill} 
                           className="text-xs bg-gray-100 py-1 px-3 rounded-full"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3 }}
                         >
                           {skill}
-                        </span>
+                        </motion.span>
                       ))}
-                    </div>
-                    <a 
+                    </motion.div>
+                    <motion.a 
                       href={`#${exp.id}`}
                       className="inline-flex items-center group/link"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     >
                       <span className="text-sm font-medium mr-2">View Details</span>
                       <span className="h-[2px] w-6 bg-black transition-all group-hover/link:w-10"></span>
                       <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover/link:translate-x-1" />
-                    </a>
+                    </motion.a>
                   </div>
                 </motion.div>
                 

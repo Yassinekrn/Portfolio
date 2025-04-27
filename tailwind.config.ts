@@ -30,7 +30,7 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: '#8B0000',
+          DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))'
         },
         secondary: {
@@ -67,7 +67,7 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
         },
-        highlight: "#8B0000",
+        highlight: "hsl(var(--highlight))",
         darkblue: "#1A1F2C",
       },
       borderRadius: {
@@ -131,6 +131,15 @@ export default {
           '25%': { transform: 'translateY(-5px) rotate(2deg)' },
           '75%': { transform: 'translateY(5px) rotate(-2deg)' },
           '100%': { transform: 'translateY(0px) rotate(0deg)' }
+        },
+        'squish': {
+          '0%': { transform: 'scale(1, 1)' },
+          '50%': { transform: 'scale(1.2, 0.8)' },
+          '100%': { transform: 'scale(1, 1)' }
+        },
+        'cursor-morph': {
+          '0%': { transform: 'scale(1) translate(-50%, -50%)' },
+          '100%': { transform: 'scale(1) translate(-50%, -50%)' }
         }
       },
       animation: {
@@ -146,6 +155,8 @@ export default {
         'marquee': 'marquee 25s linear infinite',
         'blur-in': 'blur-in 0.6s ease-out forwards',
         'float-advanced': 'float-advanced 6s ease-in-out infinite',
+        'squish': 'squish 0.5s ease-out',
+        'cursor-morph': 'cursor-morph 0.3s ease-out'
       }
     }
   },

@@ -28,13 +28,13 @@ const AnimatedText = ({ text, className = "", delay = 0 }: AnimatedTextProps) =>
         type: "spring",
         damping: 12,
         stiffness: 100,
-        filter: { duration: 0.2, ease: "easeOut" }
+        filter: { duration: 0.6, ease: "easeOut" }
       },
     },
     hidden: {
       opacity: 0,
       y: 20,
-      filter: "blur(10px)",
+      filter: "blur(8px)",
       transition: {
         type: "spring",
         damping: 12,
@@ -50,6 +50,7 @@ const AnimatedText = ({ text, className = "", delay = 0 }: AnimatedTextProps) =>
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
+      data-cursor-highlight="true"
     >
       {words.map((word, index) => (
         <motion.span
