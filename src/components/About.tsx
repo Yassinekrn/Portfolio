@@ -50,20 +50,20 @@ const About = () => {
               visible: { transition: { staggerChildren: 0.1 } }
             }}
           >
-            <motion.div variants={fadeInVariants(0)} className="flex items-center gap-4 mb-4">
+            <motion.div variants={fadeInVariants} className="flex items-center gap-4 mb-4">
               <div className="h-px bg-black flex-grow max-w-[100px]"></div>
               <span className="text-sm font-mono uppercase tracking-wider">About Me</span>
             </motion.div>
             
             <motion.h2 
-              variants={fadeInVariants(1)} 
+              variants={fadeInVariants}
               className="text-4xl md:text-5xl font-display font-bold mb-8"
               data-cursor-highlight="true"
             >
               Hello! I'm Alex Cooper
             </motion.h2>
             
-            <motion.div variants={fadeInVariants(2)} className="space-y-6 text-gray-600">
+            <motion.div variants={fadeInVariants} className="space-y-6 text-gray-600">
               <p>
                 I partner up with dynamic founders reinventing tomorrow, from YC startups to enterprises and bootstrapped companies. My goal is to craft unique, consistent, and mature identities for SaaS and Web3 products.
               </p>
@@ -76,7 +76,7 @@ const About = () => {
             </motion.div>
             
             <motion.div 
-              variants={fadeInVariants(3)} 
+              variants={fadeInVariants}
               className="mt-10 grid grid-cols-3 gap-4"
             >
               <motion.div 
@@ -113,7 +113,7 @@ const About = () => {
             }}
           >
             <motion.div 
-              variants={fadeInVariants(0)} 
+              variants={fadeInVariants}
               className="relative"
             >
               <motion.div
@@ -154,7 +154,7 @@ const About = () => {
             </motion.div>
             
             <motion.div 
-              variants={fadeInVariants(3)} 
+              variants={fadeInVariants}
               className="mt-16"
             >
               <h3 className="text-xl font-display font-bold mb-6" data-cursor-highlight="true">Skills & Expertise</h3>
@@ -163,7 +163,7 @@ const About = () => {
                 {skills.map((skillGroup, idx) => (
                   <motion.div 
                     key={idx}
-                    variants={fadeInVariants(idx + 4)}
+                    variants={fadeInVariants}
                   >
                     <h4 className="text-sm font-medium text-gray-900 mb-3">{skillGroup.category}</h4>
                     <div className="flex flex-wrap gap-2">

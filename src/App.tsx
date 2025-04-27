@@ -21,7 +21,6 @@ const App = () => {
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       // Removed unsupported properties
-      smoothTouch: false,
       touchMultiplier: 2,
     });
 

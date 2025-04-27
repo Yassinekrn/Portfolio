@@ -56,7 +56,7 @@ const Contact = () => {
         <div className="max-w-5xl mx-auto">
           <motion.div 
             className="flex items-center gap-4 mb-4"
-            variants={fadeInVariants(0)}
+            variants={fadeInVariants}
           >
             <div className="h-px bg-black flex-grow max-w-[100px]"></div>
             <span className="text-sm font-mono uppercase tracking-wider">Get in touch</span>
@@ -64,7 +64,7 @@ const Contact = () => {
           
           <motion.h2 
             className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8"
-            variants={fadeInVariants(1)}
+            variants={fadeInVariants}
             data-cursor-highlight="true"
           >
             Let's Work Together
@@ -78,7 +78,7 @@ const Contact = () => {
               }}
             >
               <motion.p 
-                variants={fadeInVariants(2)}
+                variants={fadeInVariants}
                 className="text-lg text-gray-600 mb-8"
               >
                 Have a project in mind or just want to say hello? Fill out the form and I'll get back to you as soon as possible.
@@ -86,7 +86,7 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <motion.div 
-                  variants={fadeInVariants(3)}
+                  variants={fadeInVariants}
                   className="flex items-start gap-4"
                   whileHover={{ x: 5 }}
                 >
@@ -102,7 +102,7 @@ const Contact = () => {
                 </motion.div>
                 
                 <motion.div 
-                  variants={fadeInVariants(4)}
+                  variants={fadeInVariants}
                   className="flex items-start gap-4"
                   whileHover={{ x: 5 }}
                 >
@@ -119,7 +119,7 @@ const Contact = () => {
                 </motion.div>
                 
                 <motion.div 
-                  variants={fadeInVariants(5)}
+                  variants={fadeInVariants}
                   className="flex items-start gap-4"
                   whileHover={{ x: 5 }}
                 >
@@ -137,7 +137,7 @@ const Contact = () => {
               </div>
               
               <motion.div 
-                variants={fadeInVariants(6)}
+                variants={fadeInVariants}
                 className="mt-10"
               >
                 <h3 className="text-base font-medium mb-4">Connect with me</h3>
