@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -16,44 +15,60 @@ import CustomCursor from "./components/CustomCursor";
 const queryClient = new QueryClient();
 
 const App = () => {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      // Only use supported properties
-      touchMultiplier: 2,
-    });
+    useEffect(() => {
+        // Create Lenis instance with improved settings
+        const lenis = new Lenis({
+            duration: 0.8, // Reduced from 1.2 for more responsive scrolling
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: "vertical",
+            smoothWheel: true, // Better handling of mouse wheel
+            wheelMultiplier: 1.0, // Adjust wheel sensitivity
+            touchMultiplier: 1.5, // Reduced from 2 for more natural feel
+            // smooth: true,
+            syncTouch: true, // Syncs touch and wheel scrolling
+        });
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+        // Create a more stable animation loop
+        function animate(time: number) {
+            lenis.raf(time);
+            requestAnimationFrame(animate);
+        }
 
-    requestAnimationFrame(raf);
+        // Start the animation loop
+        requestAnimationFrame(animate);
 
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
+        // Handle resize events to prevent scroll issues on window dimension changes
+        const resizeObserver = new ResizeObserver(() => {
+            lenis.resize();
+        });
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner position="bottom-right" />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/work" element={<WorkPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-        <CustomCursor />
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
+        resizeObserver.observe(document.body);
+
+        // Cleanup function
+        return () => {
+            lenis.destroy();
+            resizeObserver.disconnect();
+        };
+    }, []);
+
+    return (
+        <QueryClientProvider client={queryClient}>
+            <TooltipProvider>
+                <Toaster />
+                <Sonner position="bottom-right" />
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Index />} />
+                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/work" element={<WorkPage />} />
+                        <Route path="/contact" element={<ContactPage />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </BrowserRouter>
+                <CustomCursor />
+            </TooltipProvider>
+        </QueryClientProvider>
+    );
 };
 
 export default App;
