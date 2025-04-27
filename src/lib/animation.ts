@@ -1,9 +1,11 @@
 
-import { Variant } from "framer-motion";
+import { Variants } from "framer-motion";
 
-export interface AnimationVariants {
-  hidden: Variant;
-  visible: Variant;
+// Updated interface to be compatible with framer-motion Variants
+export interface AnimationVariants extends Variants {
+  hidden: any;
+  visible: any;
+  [key: string]: any; // Add index signature to match framer-motion's Variants type
 }
 
 export const fadeInVariants: AnimationVariants = {
@@ -34,7 +36,7 @@ export const fadeInWithDelayVariants = (delay: number = 0): AnimationVariants =>
   }
 });
 
-export const staggerContainerVariants = {
+export const staggerContainerVariants: AnimationVariants = {
   hidden: { 
     opacity: 1 
   },
