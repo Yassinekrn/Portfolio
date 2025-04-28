@@ -54,10 +54,10 @@ const Navbar = () => {
                     className="text-xl font-display font-bold relative overflow-hidden group"
                 >
                     <span className="block transition-transform duration-300 group-hover:-translate-y-full dark:text-white">
-                        Alex Cooper
+                        Yassine Krichen
                     </span>
                     <span className="block absolute top-0 left-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-highlight">
-                        Alex Cooper
+                        Yassine Krichen
                     </span>
                 </Link>
 

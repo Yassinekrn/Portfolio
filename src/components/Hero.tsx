@@ -137,7 +137,7 @@ const Hero = () => {
                         transition={{ duration: 0.6 }}
                         className="inline-block mb-4 py-1 px-3 bg-highlight/10 text-black dark:text-white text-sm font-medium rounded-full"
                     >
-                        Designer & Developer
+                        Software Engineer 🚀 | Full-Stack Specialist
                     </motion.p>
 
                     <motion.div
@@ -148,12 +148,13 @@ const Hero = () => {
                     >
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight tracking-normal dark:text-white">
                             <AnimatedText
-                                text="Crafting Digital Experiences"
+                                text="Engineering Scalable, Secure Software"
                                 delay={1}
                                 className="block"
                             />
+
                             <AnimatedText
-                                text="That Inspire & Engage"
+                                text="That Bring Ideas To Life."
                                 delay={2}
                                 className="block"
                             />
@@ -166,8 +167,9 @@ const Hero = () => {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto"
                     >
-                        I design and build award-winning digital products that
-                        help innovative brands move at the speed of culture.
+                        I architect and develop high-performance solutions that
+                        transform complex challenges into elegant, scalable
+                        digital experiences.
                     </motion.p>
 
                     <motion.div

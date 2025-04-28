@@ -15,7 +15,6 @@ const ThemeToggle = () => {
             aria-label={`Switch to ${
                 theme === "light" ? "dark" : "light"
             } mode`}
-            data-cursor-highlight="true"
         >
             <motion.div
                 initial={false}
