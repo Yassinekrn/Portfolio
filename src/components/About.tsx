@@ -17,19 +17,18 @@ const skills: Skill[] = [
         category: "Design",
         items: [
             "UI/UX Design",
+            "Responsivness",
             "Brand Identity",
-            "Design Systems",
             "Prototyping",
-            "Wireframing",
         ],
     },
     {
         category: "Development",
-        items: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Three.js"],
+        items: ["React", "TypeScript", "Node.js", "Python", "MongoDB"],
     },
     {
         category: "Tools",
-        items: ["Figma", "Adobe Creative Suite", "Framer", "VS Code", "Git"],
+        items: ["VS Code", "Git", "Figma", "Postman", "Docker"],
     },
 ];
 
@@ -62,7 +61,7 @@ const About = () => {
                             className="text-4xl md:text-5xl font-display font-bold mb-8 dark:text-white"
                             data-cursor-highlight="true"
                         >
-                            Hello! I'm Alex Cooper
+                            Hello! I'm Yasine Krichen
                         </motion.h2>
 
                         <motion.div
@@ -70,24 +69,25 @@ const About = () => {
                             className="space-y-6 text-gray-600 dark:text-gray-300"
                         >
                             <p>
-                                I partner up with dynamic founders reinventing
-                                tomorrow, from YC startups to enterprises and
-                                bootstrapped companies. My goal is to craft
-                                unique, consistent, and mature identities for
-                                SaaS and Web3 products.
+                                I'm a final-year Information Systems Development
+                                student who partners with innovative teams to
+                                build reliable, user-friendly applications. My
+                                passion lies in creating seamless digital
+                                experiences while integrating cutting-edge AI
+                                solutions and robust security measures.
                             </p>
                             <p>
-                                With over 8 years of experience in digital
-                                design and development, I've helped numerous
-                                brands establish their online presence with
-                                clean, functional, and visually appealing
-                                websites.
+                                With experience gained through internships and
+                                freelance projects, I've helped develop various
+                                information management systems and open-source
+                                initiatives that combine functionality with
+                                intuitive design.
                             </p>
                             <p>
-                                My approach combines strategic thinking with
-                                aesthetic excellence, ensuring that each project
-                                not only looks stunning but also achieves its
-                                business objectives effectively.
+                                My approach merges technical excellence with
+                                creative problem-solving, ensuring each project
+                                not only meets but exceeds its objectives
+                                through clean code and scalable architecture.
                             </p>
                         </motion.div>
 
@@ -100,10 +100,10 @@ const About = () => {
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <div className="text-3xl md:text-4xl font-display font-bold text-black dark:text-white">
-                                    8+
+                                    3+
                                 </div>
                                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                                    Years of Experience
+                                    Years of Coding Experience
                                 </p>
                             </motion.div>
                             <motion.div
@@ -111,7 +111,7 @@ const About = () => {
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <div className="text-3xl md:text-4xl font-display font-bold text-black dark:text-white">
-                                    50+
+                                    15+
                                 </div>
                                 <p className="text-sm text-gray-500 dark:text-gray-400">
                                     Projects Completed
@@ -122,7 +122,7 @@ const About = () => {
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <div className="text-3xl md:text-4xl font-display font-bold text-black dark:text-white">
-                                    30+
+                                    10+
                                 </div>
                                 <p className="text-sm text-gray-500 dark:text-gray-400">
                                     Happy Clients
@@ -146,7 +146,7 @@ const About = () => {
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <img
-                                    src="/lovable-uploads/ae96432a-2a09-4826-af5a-b00dfe71b1b3.png"
+                                    src="/assets/images/about.png"
                                     alt="About me illustration"
                                     className="w-full h-auto rounded-2xl"
                                 />
@@ -243,7 +243,9 @@ const About = () => {
             <div className="overflow-hidden py-10 mt-24 bg-highlight">
                 <div className="flex space-x-6 animate-marquee whitespace-nowrap">
                     {Array(10)
-                        .fill("Designer • Developer • Strategist • ")
+                        .fill(
+                            "Critical Thinking • Adaptability • Resilience • Communication • Creativity • Problem Solving • Leadership • Time Management •"
+                        )
                         .map((text, i) => (
                             <span
                                 key={i}
