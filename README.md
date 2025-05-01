@@ -1,73 +1,79 @@
-# Welcome to your Lovable project
+# ✨ Portfolio Project: Yassine Krichen ✨
 
-## Project info
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
+![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red)
 
-**URL**: https://lovable.dev/projects/bdaff48d-977f-4c25-a8b7-ec69c890069a
+## 📖 Description
 
-## How can I edit this code?
+A modern, responsive personal portfolio showcasing my skills, projects, and professional journey. Built with cutting-edge web technologies to deliver a smooth and engaging user experience.
 
-There are several ways of editing your application.
+## 🛠️ Technologies
 
-**Use Lovable**
+This project is proudly built with:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bdaff48d-977f-4c25-a8b7-ec69c890069a) and start prompting.
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
-Changes made via Lovable will be committed automatically to this repo.
+-   ⚡ **Vite** - Next generation frontend tooling
+-   📘 **TypeScript** - JavaScript with syntax for types
+-   ⚛️ **React** - A JavaScript library for building user interfaces
+-   🎨 **shadcn-ui** - Beautifully designed components
+-   💨 **Tailwind CSS** - A utility-first CSS framework
+-   📧 **EmailJS** - Send emails using client-side technologies
+-   🎬 **Framer Motion** - Production-ready animation library
+-   🤖 **Lovable (AI)** - AI assistance for base template
 
-**Use your preferred IDE**
+## 🚀 Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. Clone the repository:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+    ```bash
+    git clone https://github.com/YassineKrn/Portfolio.git
+    cd Portfolio
+    ```
 
-Follow these steps:
+2. Install dependencies:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3. Start the development server:
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 💻 Usage
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+After starting the development server, open your browser and navigate to `http://localhost:5173` to see your portfolio in action.
 
-**Edit a file directly in GitHub**
+## ✨ Features
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+-   🎯 Responsive design that works on all devices
+-   🌓 Light and dark mode themes
+-   🎬 Smooth animations powered by Framer Motion
+-   📱 Interactive UI components with shadcn-ui
+-   📬 Contact form integrated with EmailJS
+-   🚀 Optimized performance with Vite
 
-**Use GitHub Codespaces**
+## 📄 License
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+This project is [MIT](LICENSE) licensed.
 
-## What technologies are used for this project?
+## 📞 Contact
 
-This project is built with:
+Yassine Krichen - krichenyassine22@gmail.com
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/bdaff48d-977f-4c25-a8b7-ec69c890069a) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Project Link: Hosting in progress..
