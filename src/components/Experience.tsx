@@ -134,7 +134,7 @@ const Experience = () => {
                                             {exp.skills.map((skill) => (
                                                 <motion.span
                                                     key={skill}
-                                                    className="text-xs bg-gray-100 dark:bg-gray-700 dark:text-gray-200 py-1 px-3 rounded-full"
+                                                    className="text-xs bg-gray-100 dark:bg-gray-700 dark:text-gray-200 py-1 px-3 rounded-full hover:bg-highlight/20 dark:hover:bg-highlight/20 transition-colors duration-200"
                                                     initial={{
                                                         opacity: 0,
                                                         scale: 0.8,
@@ -148,8 +148,6 @@ const Experience = () => {
                                                     }}
                                                     whileHover={{
                                                         scale: 1.05,
-                                                        backgroundColor:
-                                                            "hsl(var(--highlight) / 0.2)",
                                                     }}
                                                 >
                                                     {skill}

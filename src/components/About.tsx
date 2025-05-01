@@ -209,18 +209,16 @@ const About = () => {
                                             idx + 5
                                         )}
                                     >
-                                        <h4 className="text-sm font-medium text-gray-900 dark:text-gray-200 mb-3">
+                                        <h4 className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">
                                             {skillGroup.category}
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                             {skillGroup.items.map((skill) => (
                                                 <motion.span
                                                     key={skill}
-                                                    className="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-2 text-sm dark:text-gray-200"
+                                                    className="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-800 dark:text-gray-100 hover:bg-highlight/20 dark:hover:bg-highlight/20 transition-colors duration-200"
                                                     whileHover={{
                                                         scale: 1.05,
-                                                        backgroundColor:
-                                                            "hsl(var(--highlight) / 0.2)",
                                                     }}
                                                     transition={{
                                                         type: "spring",
@@ -249,7 +247,7 @@ const About = () => {
                         .map((text, i) => (
                             <span
                                 key={i}
-                                className="text-3xl font-display font-bold text-black"
+                                className="text-3xl font-display font-bold text-black dark:text-black"
                             >
                                 {text}
                             </span>
