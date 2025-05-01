@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
 
+// TODO Add a Download CV button
+
 const navLinks = [
     { name: "Home", section: "hero" }, // Assuming you have a section with id="hero"
     { name: "Work", section: "work" },
