@@ -124,7 +124,7 @@ const Contact = () => {
                                             Phone
                                         </h3>
                                         <p className="text-gray-600 dark:text-gray-400">
-                                            +1 (555) 123-4567
+                                            +216 24 948 786
                                         </p>
                                     </div>
                                 </motion.div>
@@ -162,7 +162,7 @@ const Contact = () => {
                                             Email
                                         </h3>
                                         <p className="text-gray-600 dark:text-gray-400">
-                                            hello@alexcooper.design
+                                            krichenyassine22@gmail.com
                                         </p>
                                     </div>
                                 </motion.div>
@@ -198,7 +198,7 @@ const Contact = () => {
                                             Location
                                         </h3>
                                         <p className="text-gray-600 dark:text-gray-400">
-                                            San Francisco, CA
+                                            Tunis, Tunisia
                                         </p>
                                     </div>
                                 </motion.div>
@@ -213,34 +213,40 @@ const Contact = () => {
                                 </h3>
                                 <div className="flex space-x-4">
                                     <motion.a
-                                        href="#"
+                                        href="https://github.com/Yassinekrn"
+                                        target="_blank"
                                         className="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 p-3 rounded-full transition-colors"
                                         whileHover={{ scale: 1.1, rotate: 5 }}
                                         whileTap={{ scale: 0.9 }}
                                     >
+                                        {/* Github */}
                                         <svg
-                                            width="20"
-                                            height="20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
                                             viewBox="0 0 24 24"
                                             fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="dark:text-gray-300"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            className="lucide lucide-github-icon lucide-github"
                                         >
-                                            <path
-                                                d="M22.5 6.5C21.75 6.875 21 7.0625 20.125 7.1875C21 6.625 21.625 5.875 21.9375 4.9375C21.1875 5.4375 20.3125 5.75 19.375 5.9375C18.625 5.125 17.5625 4.625 16.375 4.625C14.125 4.625 12.25 6.5 12.25 8.75C12.25 9.0625 12.25 9.375 12.375 9.625C8.875 9.5 5.75 7.875 3.625 5.375C3.25 5.9375 3.0625 6.625 3.0625 7.375C3.0625 8.75 3.75 10 4.9375 10.75C4.25 10.75 3.625 10.5625 3.0625 10.25V10.3125C3.0625 12.25 4.5 13.875 6.375 14.25C6 14.375 5.625 14.375 5.25 14.375C5 14.375 4.75 14.375 4.5 14.3125C5 15.9375 6.5 17.0625 8.25 17.0625C6.875 18.125 5.125 18.75 3.25 18.75C2.875 18.75 2.5625 18.75 2.25 18.6875C4 19.8125 6.125 20.5 8.375 20.5C16.375 20.5 20.75 14.375 20.75 9.0625C20.75 8.875 20.75 8.6875 20.75 8.5C21.5 7.875 22.1875 7.125 22.5 6.25V6.5Z"
-                                                fill="currentColor"
-                                            />
+                                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                            <path d="M9 18c-4.51 2-5-2-7-2" />
                                         </svg>
                                     </motion.a>
                                     <motion.a
-                                        href="#"
+                                        href="https://www.instagram.com/the.yassine_krichen/"
+                                        target="_blank"
                                         className="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 p-3 rounded-full transition-colors"
                                         whileHover={{ scale: 1.1, rotate: -5 }}
                                         whileTap={{ scale: 0.9 }}
                                     >
+                                        {/* Instagram */}
                                         <svg
-                                            width="20"
-                                            height="20"
+                                            width="24"
+                                            height="24"
                                             viewBox="0 0 24 24"
                                             fill="none"
                                             xmlns="http://www.w3.org/2000/svg"
@@ -270,14 +276,16 @@ const Contact = () => {
                                         </svg>
                                     </motion.a>
                                     <motion.a
-                                        href="#"
+                                        href="https://www.linkedin.com/in/krichenyassine/"
+                                        target="_blank"
                                         className="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 p-3 rounded-full transition-colors"
                                         whileHover={{ scale: 1.1, rotate: 5 }}
                                         whileTap={{ scale: 0.9 }}
                                     >
+                                        {/* LinkedIn */}
                                         <svg
-                                            width="20"
-                                            height="20"
+                                            width="24"
+                                            height="24"
                                             viewBox="0 0 24 24"
                                             fill="none"
                                             xmlns="http://www.w3.org/2000/svg"

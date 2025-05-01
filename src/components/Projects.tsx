@@ -15,29 +15,20 @@ interface Project {
 const projects: Project[] = [
     {
         id: "project-1",
-        title: "RUBY",
+        title: "CodeSync",
         description:
-            "Reimagining website for B2B banking solution with a mature look and feel to meet modern e-commerce needs.",
-        tags: ["UI/UX Design", "Web Development", "Branding"],
-        image: "/lovable-uploads/492c5ac2-2cd4-48c8-b707-a77c89783608.png",
+            "All-in-one platform for tech professionals combining social networking, knowledge sharing, and development tools in a unified environment.",
+        tags: ["React", "Node.js", "MongoDB", "Socket.io", "AI Integration"],
+        image: "/public/assets/images/codesync.png",
         color: "hsl(var(--highlight))",
     },
     {
         id: "project-2",
-        title: "Nebula",
+        title: "Oasis",
         description:
-            "Creating a revolutionary AI-powered analytics dashboard with intuitive visualizations.",
-        tags: ["Interface Design", "Product Strategy", "Frontend"],
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
-        color: "hsl(var(--highlight))",
-    },
-    {
-        id: "project-3",
-        title: "Evergreen",
-        description:
-            "Sustainable e-commerce platform showcasing eco-friendly products with a carbon-neutral approach.",
-        tags: ["Branding", "Web Design", "UI/UX"],
-        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800",
+            "Scholarship discovery platform leveraging advanced scraping and AI to help students find and track quality educational funding opportunities with personalized notifications.",
+        tags: ["MERN Stack", "Python", "AI/ML", "Web Scraping"],
+        image: "/public/assets/images/oasis.png",
         color: "hsl(var(--highlight))",
     },
 ];

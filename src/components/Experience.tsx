@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface Experience {
     id: string;
@@ -16,40 +17,24 @@ interface Experience {
 const experiences: Experience[] = [
     {
         id: "exp-1",
-        role: "Senior Frontend Developer",
-        company: "TechCorp Inc.",
-        duration: "2022 - Present",
+        role: "Frontend Developer",
+        company: "Touchdown Apps",
+        duration: "2023",
         description:
-            "Led the development of enterprise-level web applications using React and TypeScript. Mentored junior developers and implemented best practices for scalable architectures.",
-        skills: [
-            "React",
-            "TypeScript",
-            "Team Leadership",
-            "System Architecture",
-        ],
-        image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=800",
+            "Led development of a comprehensive CRM solution using Next.js and React, focusing on creating intuitive user interfaces and implementing complex frontend features within a large-scale team environment.",
+        skills: ["Next.js", "React", "Team Collaboration", "UI/UX"],
+        image: "/public/assets/images/nuxapp.png",
         color: "hsl(var(--highlight))",
     },
     {
         id: "exp-2",
-        role: "UI/UX Developer",
-        company: "Design Studio X",
-        duration: "2020 - 2022",
+        role: "Full Stack Developer",
+        company: "AheadIT",
+        duration: "2022",
         description:
-            "Collaborated with designers to create pixel-perfect interfaces. Improved user engagement by 40% through optimized UI implementations and modern design systems.",
-        skills: ["UI/UX Design", "Frontend Development", "Design Systems"],
-        image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=800",
-        color: "hsl(var(--highlight))",
-    },
-    {
-        id: "exp-3",
-        role: "Software Engineering Intern",
-        company: "StartupLab",
-        duration: "2019",
-        description:
-            "Developed and maintained features for a SaaS platform. Reduced loading times by 60% through code optimization and modern web technologies.",
-        skills: ["JavaScript", "React", "Performance Optimization"],
-        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+            "Designed and implemented an Enterprise Resource Management system using .NET and Angular, allowing employees to efficiently request, track, and manage company resources through an automated workflow.",
+        skills: [".NET", "C#", "Angular", "MySQL", "System Architecture"],
+        image: "/public/assets/images/synergetic.png",
         color: "hsl(var(--highlight))",
     },
 ];
