@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -16,6 +17,8 @@ const fadeInVariants = {
 };
 
 const Contact = () => {
+    const form = useRef<HTMLFormElement>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -32,18 +35,40 @@ const Contact = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Here you would normally handle the form submission
-        console.log("Form submitted:", formData);
-        toast.success("Message sent successfully! I'll get back to you soon.", {
-            position: "bottom-right",
-        });
-        // Reset form
-        setFormData({
-            name: "",
-            email: "",
-            subject: "",
-            message: "",
-        });
+        setIsSubmitting(true);
+
+        // Use environment variables instead of hardcoded values
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        emailjs
+            .sendForm(serviceId, templateId, form.current!, publicKey)
+            .then((result) => {
+                console.log("Email sent successfully:", result.text);
+                toast.success(
+                    "Message sent successfully! I'll get back to you soon.",
+                    {
+                        position: "bottom-right",
+                    }
+                );
+
+                setFormData({
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: "",
+                });
+            })
+            .catch((error) => {
+                console.error("Error sending email:", error);
+                toast.error("Failed to send message. Please try again later.", {
+                    position: "bottom-right",
+                });
+            })
+            .finally(() => {
+                setIsSubmitting(false);
+            });
     };
 
     return (
@@ -331,7 +356,11 @@ const Contact = () => {
                             transition={{ duration: 0.5, delay: 0.3 }}
                             viewport={{ once: true }}
                         >
-                            <form onSubmit={handleSubmit} className="space-y-6">
+                            <form
+                                ref={form}
+                                onSubmit={handleSubmit}
+                                className="space-y-6"
+                            >
                                 <motion.div
                                     whileHover={{ y: -2 }}
                                     transition={{
@@ -435,11 +464,18 @@ const Contact = () => {
                                 <motion.button
                                     type="submit"
                                     className="w-full bg-black dark:bg-white text-white dark:text-black py-3 rounded-lg font-medium hover:bg-highlight hover:text-black transition-colors duration-300 relative overflow-hidden group"
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
+                                    whileHover={{
+                                        scale: isSubmitting ? 1 : 1.02,
+                                    }}
+                                    whileTap={{
+                                        scale: isSubmitting ? 1 : 0.98,
+                                    }}
+                                    disabled={isSubmitting}
                                 >
                                     <span className="relative z-10">
-                                        Send Message
+                                        {isSubmitting
+                                            ? "Sending..."
+                                            : "Send Message"}
                                     </span>
                                     <span className="absolute top-0 right-full w-full h-full bg-highlight transform group-hover:translate-x-full transition-transform duration-300"></span>
                                 </motion.button>

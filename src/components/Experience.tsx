@@ -24,7 +24,7 @@ const experiences: Experience[] = [
         description:
             "Led development of a comprehensive CRM solution using Next.js and React, focusing on creating intuitive user interfaces and implementing complex frontend features within a large-scale team environment.",
         skills: ["Next.js", "React", "Team Collaboration", "UI/UX"],
-        image: "/public/assets/images/nuxapp.png",
+        image: "/assets/images/nuxapp.png",
         color: "hsl(var(--highlight))",
         link: "https://drive.google.com/drive/folders/11pDhv74LFO0yIVjCboR8NIuu4Pw-tSHg?usp=sharing", // Example link
     },
@@ -36,7 +36,7 @@ const experiences: Experience[] = [
         description:
             "Designed and implemented an Enterprise Resource Management system using .NET and Angular, allowing employees to efficiently request, track, and manage company resources through an automated workflow.",
         skills: [".NET", "C#", "Angular", "MySQL", "System Architecture"],
-        image: "/public/assets/images/synergetic.png",
+        image: "/assets/images/synergetic.png",
         color: "hsl(var(--highlight))",
         link: "https://drive.google.com/drive/folders/1rcVJzXr0ikiiQeKpjEh2WdzNTvoN0iv1?usp=sharing", // Example link
     },

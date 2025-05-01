@@ -20,7 +20,7 @@ const projects: Project[] = [
         description:
             "All-in-one platform for tech professionals combining social networking, knowledge sharing, and development tools in a unified environment.",
         tags: ["React", "Node.js", "MongoDB", "Socket.io", "AI Integration"],
-        image: "/public/assets/images/codesync.png",
+        image: "/assets/images/codesync.png",
         color: "hsl(var(--highlight))",
         link: "https://github.com/Yassinekrn/Iris-Backend", // Example link
     },
@@ -30,7 +30,7 @@ const projects: Project[] = [
         description:
             "Scholarship discovery platform leveraging advanced scraping and AI to help students find and track quality educational funding opportunities with personalized notifications.",
         tags: ["MERN Stack", "Python", "AI/ML", "Web Scraping"],
-        image: "/public/assets/images/oasis.png",
+        image: "/assets/images/oasis.png",
         color: "hsl(var(--highlight))",
         link: "https://github.com/Yassinekrn/Oasis-User-Backend", // Example link
     },
