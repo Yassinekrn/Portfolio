@@ -146,7 +146,7 @@ const About = () => {
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <img
-                                    src="/assets/images/about.png"
+                                    src="/assets/images/aboutskills.png"
                                     alt="About me illustration"
                                     className="w-full h-auto rounded-2xl"
                                 />

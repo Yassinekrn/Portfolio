@@ -12,6 +12,7 @@ interface Experience {
     skills: string[];
     image: string;
     color: string;
+    link: string; // Add link property to interface
 }
 
 const experiences: Experience[] = [
@@ -25,6 +26,7 @@ const experiences: Experience[] = [
         skills: ["Next.js", "React", "Team Collaboration", "UI/UX"],
         image: "/public/assets/images/nuxapp.png",
         color: "hsl(var(--highlight))",
+        link: "https://drive.google.com/drive/folders/11pDhv74LFO0yIVjCboR8NIuu4Pw-tSHg?usp=sharing", // Example link
     },
     {
         id: "exp-2",
@@ -36,6 +38,7 @@ const experiences: Experience[] = [
         skills: [".NET", "C#", "Angular", "MySQL", "System Architecture"],
         image: "/public/assets/images/synergetic.png",
         color: "hsl(var(--highlight))",
+        link: "https://drive.google.com/drive/folders/1rcVJzXr0ikiiQeKpjEh2WdzNTvoN0iv1?usp=sharing", // Example link
     },
 ];
 
@@ -155,7 +158,9 @@ const Experience = () => {
                                             ))}
                                         </motion.div>
                                         <motion.a
-                                            href={`#${exp.id}`}
+                                            href={exp.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="inline-flex items-center group/link"
                                             whileHover={{ x: 5 }}
                                             transition={{

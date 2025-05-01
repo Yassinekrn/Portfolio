@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "Work", path: "/work" },
-    // { name: "Projects", path: "/projects" },
-    { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
+    { name: "Home", section: "hero" }, // Assuming you have a section with id="hero"
+    { name: "Work", section: "work" },
+    { name: "About", section: "about" },
+    { name: "Contact", section: "contact" },
 ];
 
 const Navbar = () => {
@@ -40,6 +37,20 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            // Close mobile menu if open
+            if (mobileMenuOpen) setMobileMenuOpen(false);
+
+            // Scroll to section
+            window.scrollTo({
+                top: element.offsetTop - 80, // Adjust for navbar height
+                behavior: "smooth",
+            });
+        }
+    };
+
     return (
         <header
             className={cn(
@@ -50,8 +61,12 @@ const Navbar = () => {
             )}
         >
             <div className="container mx-auto flex items-center justify-between">
-                <Link
-                    to="/"
+                <a
+                    href="#hero"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection("hero");
+                    }}
                     className="text-xl font-display font-bold relative overflow-hidden group"
                 >
                     <span className="block transition-transform duration-300 group-hover:-translate-y-full dark:text-white">
@@ -60,17 +75,21 @@ const Navbar = () => {
                     <span className="block absolute top-0 left-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-highlight">
                         Yassine Krichen
                     </span>
-                </Link>
+                </a>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center space-x-8">
                     {navLinks.map((link) => (
-                        <Link
+                        <a
                             key={link.name}
-                            to={link.path}
+                            href={`#${link.section}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                scrollToSection(link.section);
+                            }}
                             className={cn(
                                 "text-sm font-medium relative transition-colors dark:text-gray-200",
-                                activeSection === link.name.toLowerCase()
+                                activeSection === link.section
                                     ? "text-highlight"
                                     : "hover:text-highlight"
                             )}
@@ -79,18 +98,22 @@ const Navbar = () => {
                             <span
                                 className={cn(
                                     "absolute -bottom-1 left-0 w-0 h-0.5 bg-highlight transition-all duration-300",
-                                    activeSection === link.name.toLowerCase()
+                                    activeSection === link.section
                                         ? "w-full"
                                         : "group-hover:w-full"
                                 )}
                             />
-                        </Link>
+                        </a>
                     ))}
 
                     <div className="flex items-center space-x-4">
                         <ThemeToggle />
                         <a
                             href="#contact"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                scrollToSection("contact");
+                            }}
                             className="bg-black dark:bg-white text-white dark:text-black px-5 py-2 rounded-full text-sm font-medium hover:bg-highlight hover:text-black transition-colors duration-300"
                         >
                             Let's Talk
@@ -106,7 +129,22 @@ const Navbar = () => {
                         className="flex items-center"
                         aria-label="Toggle menu"
                     >
-                        <Menu className="h-6 w-6 dark:text-white" />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="h-6 w-6 dark:text-white"
+                        >
+                            <line x1="4" x2="20" y1="12" y2="12" />
+                            <line x1="4" x2="20" y1="6" y2="6" />
+                            <line x1="4" x2="20" y1="18" y2="18" />
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -120,18 +158,24 @@ const Navbar = () => {
             >
                 <div className="flex flex-col items-center justify-center h-full space-y-8">
                     {navLinks.map((link) => (
-                        <Link
+                        <a
                             key={link.name}
-                            to={link.path}
-                            onClick={() => setMobileMenuOpen(false)}
+                            href={`#${link.section}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                scrollToSection(link.section);
+                            }}
                             className="text-2xl font-display font-bold hover:text-highlight transition-colors dark:text-white"
                         >
                             {link.name}
-                        </Link>
+                        </a>
                     ))}
                     <a
                         href="#contact"
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection("contact");
+                        }}
                         className="bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-full text-lg font-medium hover:bg-highlight hover:text-black transition-colors duration-300"
                     >
                         Let's Talk

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 const Footer = () => {
@@ -33,6 +32,16 @@ const Footer = () => {
         return () => observer.disconnect();
     }, []);
 
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            window.scrollTo({
+                top: element.offsetTop - 80, // Adjust for navbar height
+                behavior: "smooth",
+            });
+        }
+    };
+
     return (
         <footer
             ref={footerRef}
@@ -42,36 +51,45 @@ const Footer = () => {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
                     <div className="col-span-1 md:col-span-2">
-                        <Link
-                            to="/"
+                        <a
+                            href="#hero"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                scrollToSection("hero");
+                            }}
                             className="text-2xl font-display font-bold mb-4 block"
                         >
-                            Alex Cooper
-                        </Link>
+                            Yassine Krichen
+                        </a>
                         <p className="text-gray-400 mb-6 max-w-md">
                             Creating exceptional digital experiences through
                             strategic design and development.
                         </p>
                         <div className="flex space-x-4">
                             <a
-                                href="#"
+                                href="https://github.com/Yassinekrn"
+                                target="_blank"
                                 className="hover:text-highlight transition-colors"
                             >
                                 <svg
+                                    xmlns="http://www.w3.org/2000/svg"
                                     width="20"
                                     height="20"
                                     viewBox="0 0 24 24"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    className="lucide lucide-github-icon lucide-github"
                                 >
-                                    <path
-                                        d="M22.5 6.5C21.75 6.875 21 7.0625 20.125 7.1875C21 6.625 21.625 5.875 21.9375 4.9375C21.1875 5.4375 20.3125 5.75 19.375 5.9375C18.625 5.125 17.5625 4.625 16.375 4.625C14.125 4.625 12.25 6.5 12.25 8.75C12.25 9.0625 12.25 9.375 12.375 9.625C8.875 9.5 5.75 7.875 3.625 5.375C3.25 5.9375 3.0625 6.625 3.0625 7.375C3.0625 8.75 3.75 10 4.9375 10.75C4.25 10.75 3.625 10.5625 3.0625 10.25V10.3125C3.0625 12.25 4.5 13.875 6.375 14.25C6 14.375 5.625 14.375 5.25 14.375C5 14.375 4.75 14.375 4.5 14.3125C5 15.9375 6.5 17.0625 8.25 17.0625C6.875 18.125 5.125 18.75 3.25 18.75C2.875 18.75 2.5625 18.75 2.25 18.6875C4 19.8125 6.125 20.5 8.375 20.5C16.375 20.5 20.75 14.375 20.75 9.0625C20.75 8.875 20.75 8.6875 20.75 8.5C21.5 7.875 22.1875 7.125 22.5 6.25V6.5Z"
-                                        fill="currentColor"
-                                    />
+                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                    <path d="M9 18c-4.51 2-5-2-7-2" />
                                 </svg>
                             </a>
                             <a
-                                href="#"
+                                href="https://www.instagram.com/the.yassine_krichen/"
+                                target="_blank"
                                 className="hover:text-highlight transition-colors"
                             >
                                 <svg
@@ -105,7 +123,8 @@ const Footer = () => {
                                 </svg>
                             </a>
                             <a
-                                href="#"
+                                href="https://www.linkedin.com/in/krichenyassine/"
+                                target="_blank"
                                 className="hover:text-highlight transition-colors"
                             >
                                 <svg
@@ -154,36 +173,52 @@ const Footer = () => {
                         </h3>
                         <ul className="space-y-2">
                             <li>
-                                <Link
-                                    to="/"
+                                <a
+                                    href="#hero"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("hero");
+                                    }}
                                     className="text-gray-400 hover:text-highlight transition-colors"
                                 >
                                     Home
-                                </Link>
+                                </a>
                             </li>
                             <li>
-                                <Link
-                                    to="/about"
+                                <a
+                                    href="#about"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("about");
+                                    }}
                                     className="text-gray-400 hover:text-highlight transition-colors"
                                 >
                                     About
-                                </Link>
+                                </a>
                             </li>
                             <li>
-                                <Link
-                                    to="/work"
+                                <a
+                                    href="#work"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("work");
+                                    }}
                                     className="text-gray-400 hover:text-highlight transition-colors"
                                 >
                                     Work
-                                </Link>
+                                </a>
                             </li>
                             <li>
-                                <Link
-                                    to="/contact"
+                                <a
+                                    href="#contact"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("contact");
+                                    }}
                                     className="text-gray-400 hover:text-highlight transition-colors"
                                 >
                                     Contact
-                                </Link>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -192,35 +227,23 @@ const Footer = () => {
                         <h3 className="text-lg font-medium mb-4">Services</h3>
                         <ul className="space-y-2">
                             <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-400 hover:text-highlight transition-colors"
-                                >
+                                <a className="text-gray-400 hover:text-highlight transition-colors">
                                     UI/UX Design
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-400 hover:text-highlight transition-colors"
-                                >
-                                    Web Development
+                                <a className="text-gray-400 hover:text-highlight transition-colors">
+                                    Full Stack Development
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-400 hover:text-highlight transition-colors"
-                                >
-                                    Branding
+                                <a className="text-gray-400 hover:text-highlight transition-colors">
+                                    Branding & SEO
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-400 hover:text-highlight transition-colors"
-                                >
-                                    SEO
+                                <a className="text-gray-400 hover:text-highlight transition-colors">
+                                    Software Solutions with Innovative Tech
                                 </a>
                             </li>
                         </ul>
@@ -228,21 +251,21 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p className="text-gray-500 text-sm mb-4 md:mb-0">
-                        &copy; {currentYear} Alex Cooper. All rights reserved.
-                    </p>
-                    <div className="flex space-x-6">
-                        <a
-                            href="#"
-                            className="text-gray-500 text-sm hover:text-highlight"
-                        >
-                            Privacy Policy
-                        </a>
-                        <a
-                            href="#"
-                            className="text-gray-500 text-sm hover:text-highlight"
-                        >
-                            Terms of Service
+                    <div className="flex flex-col space-y-2">
+                        <p className="text-gray-500 text-sm mb-1 md:mb-0">
+                            &copy; {currentYear} Yassine Krichen. All rights
+                            reserved.
+                        </p>
+                        <p className="text-gray-500 text-xs opacity-60 max-w-md text-left">
+                            Note: Project mockups have been redesigned to
+                            showcase UI/UX skills. Actual contributions focused
+                            on backend development within collaborative team
+                            environments.
+                        </p>
+                    </div>
+                    <div className="flex space-x-6 mt-4 md:mt-0">
+                        <a className="text-gray-500 text-sm hover:text-highlight">
+                            Made with 💓 by Yassine Krichen
                         </a>
                     </div>
                 </div>

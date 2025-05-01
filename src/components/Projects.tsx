@@ -10,6 +10,7 @@ interface Project {
     tags: string[];
     image: string;
     color: string;
+    link: string; // Add link property to interface
 }
 
 const projects: Project[] = [
@@ -21,6 +22,7 @@ const projects: Project[] = [
         tags: ["React", "Node.js", "MongoDB", "Socket.io", "AI Integration"],
         image: "/public/assets/images/codesync.png",
         color: "hsl(var(--highlight))",
+        link: "https://github.com/Yassinekrn/Iris-Backend", // Example link
     },
     {
         id: "project-2",
@@ -30,6 +32,7 @@ const projects: Project[] = [
         tags: ["MERN Stack", "Python", "AI/ML", "Web Scraping"],
         image: "/public/assets/images/oasis.png",
         color: "hsl(var(--highlight))",
+        link: "https://github.com/Yassinekrn/Oasis-User-Backend", // Example link
     },
 ];
 
@@ -174,7 +177,9 @@ const Projects = () => {
                                             ))}
                                         </motion.div>
                                         <motion.a
-                                            href={`#${project.id}`}
+                                            href={project.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="inline-flex items-center group/link"
                                             whileHover={{ x: 5 }}
                                             transition={{
