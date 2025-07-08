@@ -36,8 +36,19 @@ const Navbar = () => {
         };
 
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+
+        // Prevent background scroll when mobile menu is open
+        if (mobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            document.body.style.overflow = "";
+        };
+    }, [mobileMenuOpen]);
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
