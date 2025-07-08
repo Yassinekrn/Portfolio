@@ -25,6 +25,8 @@ const Contact = () => {
         subject: "",
         message: "",
     });
+    const [lastSubmitTime, setLastSubmitTime] = useState<number>(0);
+    const [honeypot, setHoneypot] = useState("");
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,8 +35,37 @@ const Contact = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const validateEmail = (email: string) => {
+        // RFC 5322 Official Standard regex (simplified)
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Extra validation
+        if (!formData.name.trim() || !formData.subject.trim() || !formData.message.trim()) {
+            toast.error("Please fill in all fields.", { position: "bottom-right" });
+            return;
+        }
+        if (!validateEmail(formData.email)) {
+            toast.error("Please enter a valid email address.", { position: "bottom-right" });
+            return;
+        }
+
+        if (honeypot) {
+            // Bot detected
+            toast.error("Spam detected.", { position: "bottom-right" });
+            return;
+        }
+
+        const now = Date.now();
+        if (now - lastSubmitTime < 30000) { // 30 seconds
+            toast.error("Please wait before sending another message.", { position: "bottom-right" });
+            return;
+        }
+        setLastSubmitTime(now);
+
         setIsSubmitting(true);
 
         // Use environment variables instead of hardcoded values
@@ -360,7 +391,19 @@ const Contact = () => {
                                 ref={form}
                                 onSubmit={handleSubmit}
                                 className="space-y-6"
+                                autoComplete="off"
                             >
+                                {/* Honeypot field */}
+                                <input
+                                    type="text"
+                                    name="company"
+                                    value={honeypot}
+                                    onChange={e => setHoneypot(e.target.value)}
+                                    style={{ display: "none" }}
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                />
+
                                 <motion.div
                                     whileHover={{ y: -2 }}
                                     transition={{
