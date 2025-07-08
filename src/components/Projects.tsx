@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import LazyImage from "./LazyImage";
 
 interface Project {
     id: string;
@@ -96,7 +97,7 @@ const Projects = () => {
                                             backgroundColor: project.color,
                                         }}
                                     ></div>
-                                    <img
+                                    <LazyImage
                                         src={project.image}
                                         alt={project.title}
                                         className="w-full h-[350px] md:h-[500px] object-cover transform transition-transform duration-700 group-hover:scale-105"

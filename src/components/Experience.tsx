@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import LazyImage from "./LazyImage";
 
 interface Experience {
     id: string;
@@ -187,7 +188,7 @@ const Experience = () => {
                                         className="absolute inset-0 opacity-20 transition-opacity duration-500 group-hover:opacity-40"
                                         style={{ backgroundColor: exp.color }}
                                     ></div>
-                                    <img
+                                    <LazyImage
                                         src={exp.image}
                                         alt={`${exp.role} at ${exp.company}`}
                                         className="w-full h-[350px] md:h-[500px] object-cover transform transition-transform duration-700 group-hover:scale-105"

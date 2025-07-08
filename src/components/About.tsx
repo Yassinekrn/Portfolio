@@ -6,6 +6,7 @@ import {
     staggerContainerVariants,
     scrollAnimationSettings,
 } from "@/lib/animation";
+import LazyImage from "./LazyImage";
 
 interface Skill {
     category: string;
@@ -17,7 +18,7 @@ const skills: Skill[] = [
         category: "Design",
         items: [
             "UI/UX Design",
-            "Responsivness",
+            "Responsiveness",
             "Brand Identity",
             "Prototyping",
         ],
@@ -145,7 +146,7 @@ const About = () => {
                                 whileHover={{ rotate: -2, scale: 1.02 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
-                                <img
+                                <LazyImage
                                     src="/assets/images/aboutskills.png"
                                     alt="About me illustration"
                                     className="w-full h-auto rounded-2xl"
